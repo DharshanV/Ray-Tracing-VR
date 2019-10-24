@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{606eb5b5-a0bf-42f4-9611-d06af12eeaed}</ProjectGuid>
-    <RootNamespace>Ray_Tracing_VR</RootNamespace>
+    <ProjectGuid>{4F278B32-CA1F-4403-B5ED-3064FD024F40}</ProjectGuid>
+    <RootNamespace>RayTracingVR</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -69,20 +69,19 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\dhvishwa\DESKTOP\OpenVR\openvr\headers;C:\Users\dhvishwa\DESKTOP\GLFW\include;C:\Users\dhvishwa\DESKTOP\GLAD\include;C:\Users\dhvishwa\DESKTOP\glm;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\dhvishwa\DESKTOP\OpenVR\openvr\lib\win32;C:\Users\dhvishwa\Desktop\GLFW\lib-vc2017;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\dhvishwa\DESKTOP\glew-1.11.0\include;C:\Users\dhvishwa\DESKTOP\GLFW\include;C:\Users\dhvishwa\DESKTOP\glm;C:\Users\dhvishwa\DESKTOP\LibOVR\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
+      <AdditionalLibraryDirectories>C:\Users\dhvishwa\DESKTOP\glew-1.11.0\lib\Release\Win32;C:\Users\dhvishwa\Desktop\GLFW\lib-vc2017;C:\Users\dhvishwa\DESKTOP\LibOVR\Lib\Windows\Win32\Release\VS2017;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;LibOVR.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -122,7 +121,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\GLAD\src\glad.c" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
