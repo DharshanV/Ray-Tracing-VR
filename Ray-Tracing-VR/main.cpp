@@ -28,6 +28,7 @@ using glm::quat;
 // Window dimensions
 const GLint WIDTH = 800, HEIGHT = 600;
 ovrSession session;
+ovrHmdDesc desc;
 ovrGraphicsLuid luid;
 // The MAIN function, from here we start the application and run the game loop
 
@@ -59,10 +60,21 @@ int main()
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
+		ovrTrackingState ts = ovr_GetTrackingState(session, ovr_GetTimeInSeconds(), ovrTrue);
+
+		if (ts.StatusFlags &(ovrStatus_OrientationTracked | ovrStatus_PositionTracked))
+		{
+			ovrPosef pose = ts.HeadPose.ThePose;
+			ovrVector3f position = pose.Position;
+			printf("X:%f, Y:%f, Z:%f\n", position.x, position.y, position.z);
+		}
+
 		glfwSwapBuffers(window);
 	}
 
 	glfwTerminate();
+	ovr_Destroy(session);
+	ovr_Shutdown();
 	return EXIT_SUCCESS;
 }
 
@@ -112,9 +124,8 @@ void initVR() {
 		return;
 	}
 
-	ovrHmdDesc desc = ovr_GetHmdDesc(session);
+	desc = ovr_GetHmdDesc(session);
 	ovrSizei resolution = desc.Resolution;
 
-	ovr_Destroy(session);
-	ovr_Shutdown();
+	ovrTextureSwapChain textureSwapChain = 0;
 }
