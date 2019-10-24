@@ -14,39 +14,13 @@
 #include <glm/gtx/quaternion.hpp>
 #include <algorithm>
 
-using glm::ivec3;
-using glm::ivec2;
-using glm::uvec2;
-using glm::mat3;
-using glm::mat4;
-using glm::vec2;
-using glm::vec3;
-using glm::vec4;
-using glm::quat;
-#define FAIL(X) throw std::runtime_error(X)
-
-// Window dimensions
 const GLint WIDTH = 800, HEIGHT = 600;
 ovrSession session;
 ovrHmdDesc desc;
 ovrGraphicsLuid luid;
-// The MAIN function, from here we start the application and run the game loop
 
 GLFWwindow* initGLFW();
 void initVR();
-
-template <typename Function>
-inline void for_each_eye(Function function) {
-	for (ovrEyeType eye = ovrEyeType::ovrEye_Left;
-		eye < ovrEyeType::ovrEye_Count;
-		eye = static_cast<ovrEyeType>(eye + 1)) {
-		function(eye);
-	}
-}
-
-inline mat4 toGlm(const ovrMatrix4f & om) {
-	return glm::transpose(glm::make_mat4(&om.M[0][0]));
-}
 
 int main()
 {
@@ -125,7 +99,4 @@ void initVR() {
 	}
 
 	desc = ovr_GetHmdDesc(session);
-	ovrSizei resolution = desc.Resolution;
-
-	ovrTextureSwapChain textureSwapChain = 0;
 }
